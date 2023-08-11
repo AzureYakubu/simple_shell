@@ -3,6 +3,12 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+/**
+ * main - Entry point
+ *
+ * Return: Always (0)
+ */
+
 int main(void)
 {
 	char *line = NULL;
@@ -11,7 +17,7 @@ int main(void)
 	pid_t child_pid;
 	int status;
 
-	while(1)
+	while (1)
 	{
 		printf("$ ");
 		read = getline(&line, &len, stdin);
@@ -23,10 +29,12 @@ int main(void)
 			perror("Error:");
 			return (1);
 		}
-		if (child_pid ==0)
+		if (child_pid == 0)
 		{
-			char *args[] ={NULL, NULL};
+			char *args[] = {NULL, NULL};
+
 			args[0] = line;
+
 			if (execve(args[0], args, NULL) == -1)
 			{
 				perror("Error:");
