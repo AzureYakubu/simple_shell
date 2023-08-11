@@ -25,7 +25,8 @@ int main(void)
 		}
 		if (child_pid ==0)
 		{
-			char *args[] ={line, NULL};
+			char *args[] ={NULL, NULL};
+			args[0] = line;
 			if (execve(args[0], args, NULL) == -1)
 			{
 				perror("Error:");
