@@ -8,15 +8,16 @@
  * @lineptr: pointer to the buffer that holds the line
  * @n: size of the buffer
  * @command: pointer to the command string
- * @args: array of argument strings
+ * @args: ...
  *
- * Return: number of arguments, -1 on error or EOF
+ * Return: number of commands, -1 on error or EOF
  */
 
 ssize_t read_input(char **lineptr, size_t *n, char **command, char **args)
 {
 	ssize_t read;
-	int nargs;
+	int ncmds;
+	char *command;
 
 	printf("$ ");
 	read = _getline(lineptr, n, stdin);
@@ -25,11 +26,14 @@ ssize_t read_input(char **lineptr, size_t *n, char **command, char **args)
 
 	(*lineptr)[read - 1] = '\0';
 
-	nargs = split_string(*lineptr, " ", args);
-	if (nargs > 0)
-		*command = args[0];
-	else
-		*command = NULL;
+	ncmds = split_string(*lineptr, ";", commands);
+	for (int i = 0; i < ncmds; i++)
+	{
+		command = commands[i];
+		while (*command == ' ')
+			command++;
+		commands[i] = command;
+	}
 
-	return (nargs);
+	return (ncmds);
 }
