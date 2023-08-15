@@ -17,5 +17,6 @@ int handle_builtin(char *command, char **args);
 void execute_command(char *command, char **args);
 int handle_setenv(char **args);
 int handle_unsetenv(char **args);
+int handle_cd(char **args);
 
 #endif /* SHELL_H */

@@ -24,7 +24,8 @@ int main(void)
 
 		if (!handle_builtin(command, args) &&
 			!handle_setenv(args) &&
-			!handle_unsetenv(args))
+			!handle_unsetenv(args) &&
+			!handle_cd(args))
 			execute_command(command, args);
 	}
 
