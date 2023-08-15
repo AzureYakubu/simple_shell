@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include "shell.h"
+
+#define MAX_ARGS 128
 
 /**
  * main - Entry point
@@ -13,37 +12,22 @@ int main(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t read;
-	pid_t child_pid;
-	int status;
+	ssize_t nargs;
+	char *command;
+	char *args[MAX_ARGS];
 
 	while (1)
 	{
-		printf("$ ");
-		read = getline(&line, &len, stdin);
-		if (read == -1)
+		nargs = read_input(&line, &len, &command, args);
+		if (nargs == -1)
 			break;
-		child_pid = fork();
-		if (child_pid == -1)
-		{
-			perror("Error:");
-			return (1);
-		}
-		if (child_pid == 0)
-		{
-			char *args[] = {NULL, NULL};
 
-			args[0] = line;
-
-			if (execve(args[0], args, NULL) == -1)
-			{
-				perror("Error:");
-				return (1);
-			}
-		}
-		else
-			wait(&status);
+		if (!handle_builtin(command, args) &&
+			!handle_setenv(args) &&
+			!handle_unsetenv(args))
+			execute_command(command, args);
 	}
+
 	free(line);
 	return (0);
 }
