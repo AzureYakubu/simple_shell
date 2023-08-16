@@ -1,6 +1,7 @@
 #include "shell.h"
 
 #define MAX_ARGS 128
+#define MAX_COMMANDS 128
 
 /**
  * main - Entry point
@@ -20,18 +21,14 @@ int main(void)
 	while (1)
 	{
 		ncmds = read_input(&line, &len, commands);
-		if (nargs == -1)
+		if (ncmds == -1)
 			break;
 		for (int i = 0; i < ncmds; i++)
 		{
 			command = commands[i];
 			split_string(command, " ", args);
-
-			if (!handle_builtin(command, args) &&
-				!handle_setenv(args) &&
-				!handle_unsetenv(args) &&
-				!handle_cd(args))
-				execute_command(command, args);
+			last_exit_status = handle_logical_operators
+				(command, args, last_exit_status);
 		}
 	}
 

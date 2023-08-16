@@ -1,3 +1,0 @@
-e if (child_pid == 0)
-      |          ^
-cc1: all warnings being treated as errors

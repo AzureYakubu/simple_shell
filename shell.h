@@ -18,5 +18,6 @@ void execute_command(char *command, char **args);
 int handle_setenv(char **args);
 int handle_unsetenv(char **args);
 int handle_cd(char **args);
+int handle_logical_operators(char *command, char **args, int last_exit_status);
 
 #endif /* SHELL_H */
