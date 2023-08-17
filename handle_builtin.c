@@ -10,17 +10,17 @@
 
 int handle_builtin(char *command, char **args)
 {
-	int status;
-
 	if (strcmp(command, "exit") == 0)
 	{
+		int status;
+
 		if (args[1] != NULL)
 			status = atoi(args[1]);
 		else
 			status = 0;
 
 		free(*args);
-		_exit(0);
+		_exit(status);
 	}
 	else if (strcmp(command, "env") == 0)
 	{

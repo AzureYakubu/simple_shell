@@ -11,7 +11,7 @@
 
 int handle_unsetenv(char **args)
 {
-	if (strcmp(args[0], "unsetenv" == 0)
+	if (strcmp(args[0], "unsetenv") == 0)
 	{
 		if (args[1] == NULL)
 		{

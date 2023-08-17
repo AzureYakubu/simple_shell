@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include "shell.h"
 
 #define MAX_TOKENS 128
 
@@ -14,23 +15,13 @@
 int split_string(char *str, const char *delim, char **tokens)
 {
 	char *token;
-	int i;
+	int i = 0;
 
-	token = str;
-	i = 0;
-	while (*str != '\0' && i < MAX_TOKENS - 1)
+	token = strtok(str, delim);
+	while (token != NULL && i < MAX_TOKENS)
 	{
-		if (strchr(delim, *str) != NULL)
-		{
-			*str = '\0;
-			if (*token != '\0')
-				tokens[i++] = token;
-			token = str + 1;
-		}
-		str++;
-	}
-	if (*token != '\0')
 		tokens[i++] = token;
-	tokens[i] = NULL;
+		token = strtok(NULL, delim);
+	}
 	return (i);
 }

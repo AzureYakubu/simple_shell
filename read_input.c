@@ -1,6 +1,7 @@
 #include "shell.h"
 
 #define MAX_ARGS 128
+#define MAX_COMMANDS 128
 
 /**
  * read_input - reads a line from the standard input stream
@@ -13,11 +14,12 @@
  * Return: number of commands, -1 on error or EOF
  */
 
-ssize_t read_input(char **lineptr, size_t *n, char **command, char **args)
+ssize_t read_input(char **lineptr, size_t *n, char **command)
 {
 	ssize_t read;
 	int ncmds;
-	char *command;
+	char *commands[MAX_COMMANDS];
+	int i;
 
 	printf("$ ");
 	read = _getline(lineptr, n, stdin);
@@ -27,12 +29,12 @@ ssize_t read_input(char **lineptr, size_t *n, char **command, char **args)
 	(*lineptr)[read - 1] = '\0';
 
 	ncmds = split_string(*lineptr, ";", commands);
-	for (int i = 0; i < ncmds; i++)
+	for (i = 0; i < ncmds; i++)
 	{
-		command = commands[i];
-		while (*command == ' ')
-			command++;
-		commands[i] = command;
+		command[i] = commands[i];
+		while (*command[i] == ' ')
+			command[i]++;
+		commands[i] = command[i];
 	}
 
 	return (ncmds);

@@ -22,7 +22,7 @@ int handle_cd(char **args)
 		else
 			path = getenv("HOME");
 
-		if (chdir(path == -1)
+		if (chdir(path) == -1)
 			perror("cd");
 
 		if (getcwd(cwd, sizeof(cwd)) != NULL)

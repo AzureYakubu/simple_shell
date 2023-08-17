@@ -11,7 +11,7 @@
 
 int handle_setenv(char **args)
 {
-	if (strcmp(args[0], "setenv" == 0)
+	if (strcmp(args[0], "setenv") == 0)
 	{
 		if (args[1] == NULL || args[2] == NULL)
 		{

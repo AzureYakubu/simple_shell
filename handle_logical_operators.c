@@ -22,10 +22,13 @@ int handle_logical_operators(char *command, char **args, int last_exit_status)
 				!handle_setenv(args + 1) &&
 				!handle_unsetenv(args + 1) &&
 				!handle_cd(args + 1))
-			return (execute_command(command, args + 1));
+			{
+				execute_command(command, args + 1);
+				return (0);
+			}
 		}
 	}
-	else if (strcmp(args[0], "||" == 0)
+	else if (strcmp(args[0], "||") == 0)
 	{
 		if (last_exit_status != 0)
 		{
@@ -33,7 +36,10 @@ int handle_logical_operators(char *command, char **args, int last_exit_status)
 				!handle_setenv(args + 1) &&
 				!handle_unsetenv(args + 1) &&
 				!handle_cd(args + 1))
-			return (execute_command(command, args + 1));
+			{
+				execute_command(command, args + 1);
+				return (0);
+			}
 		}
 	}
 	else
@@ -42,7 +48,10 @@ int handle_logical_operators(char *command, char **args, int last_exit_status)
 			!handle_setenv(args) &&
 			!handle_unsetenv(args) &&
 			!handle_cd(args))
-		return (execute_command(command, args));
+		{
+			execute_command(command, args);
+			return (0);
+		}
 	}
 
 	return (last_exit_status);
