@@ -19,6 +19,11 @@ int main(int argc, char **argv)
 	int last_exit_status = 0;
 	FILE *fp = (argc > 1) ? fopen(argv[1], "r") : stdin;
 	int i;
+
+	for (i = 0; i < MAX_ARGS; i++)
+	{
+		args[i] = NULL;
+	}
 	
 	while ((ncmds = read_input(&line, &len, commands)) != -1)
 	{
