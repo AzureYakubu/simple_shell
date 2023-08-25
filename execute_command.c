@@ -19,7 +19,10 @@ void execute_command(char *command, char **args)
 	command = get_command(command);
 
 	if (command == NULL)
+	{
 		fprintf(stderr, "Error: command not found; %s\n", args[0]);
+		exit(EXIT_FAILURE);
+	}
 
 	child_pid = fork();
 	if (child_pid == -1)
