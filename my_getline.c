@@ -53,7 +53,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			(*lineptr)[i++] = buffer[start++];
 			if ((*lineptr)[i - 1] == '\n')
 			{
-				(*lineptr[i] = '\0');
+				(*lineptr[i]);
 				 return (i);
 			}
 		}
