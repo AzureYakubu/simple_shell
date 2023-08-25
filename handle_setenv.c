@@ -20,7 +20,10 @@ int handle_setenv(char **args)
 		}
 
 		if (setenv(args[1], args[2], 1) == -1)
-		perror("setenv");
+		{
+			perror("setenv");
+			exit(EXIT_FAILURE);
+		}
 		return (1);
 	}
 
