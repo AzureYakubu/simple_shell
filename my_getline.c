@@ -51,10 +51,11 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 					return (-1);
 			}
 			(*lineptr)[i++] = buffer[start++];
+			chars_read++;
 			if ((*lineptr)[i - 1] == '\n')
 			{
-				(*lineptr[i]);
-				 return (i);
+				(*lineptr)[i] = '\0';
+				 return (chars_read);
 			}
 		}
 	}
