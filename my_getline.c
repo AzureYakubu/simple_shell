@@ -19,6 +19,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	static size_t start, end;
 	ssize_t bytes_read;
 	size_t i = 0;
+	ssize_t chars_read = 0;
 
 	if (!lineptr || !n || !stream)
 		return (-1);
