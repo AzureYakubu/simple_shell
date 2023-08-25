@@ -24,14 +24,24 @@ int handle_logical_operators(char *command, char **args, int last_exit_status)
 		execute = 1;
 	if (execute)
 	{
-		if (!handle_builtin(command, args) &&
-			!handle_setenv(args) &&
-			!handle_unsetenv(args) &&
-			!handle_cd(args))
+		if (!handle_builtin(command, args))
 		{
-			execute_command(command, args);
-			return 0;
+			return last_exit_status;
 		}
+		if (!handle_setenv(args))
+		{
+			return last_exit_status;
+		}
+		if (!handle_unsetenv(args))
+		{
+			return last_exit_status;
+		}
+		if (!handle_cd(args))
+		{
+			return last_exit_status;
+		}
+		
+		execute_command(command, args);
 	}
 
 	return (last_exit_status);
