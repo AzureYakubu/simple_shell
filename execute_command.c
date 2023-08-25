@@ -16,7 +16,7 @@ void execute_command(char *command, char **args)
 	if (path == NULL)
 		fprintf(stderr, "Error: PATH not set\n");
 
-	command = get_command(command, path);
+	command = get_command(command);
 
 	if (command == NULL)
 		fprintf(stderr, "Error: command not found; %s\n", args[0]);
