@@ -30,18 +30,14 @@ int main(int argc, char **argv)
 				handle_alias(args);
 			else
 			{
-				int num_tokens = split_string(line, delim, args);
-
-				for (int i = 0; i < num_tokens; i++)
-					{
-						printf("Token %d: %s\n", i, args[i]);
-					}
-				split_string(command, " ", args);
+				char *args[MAX_ARGS];
+				int num_tokens = split_string(command, " ", args);
+				
 				handle_comments(args);
 				handle_variable_replacement(args,
 					last_exit_status);
 				last_exit_status = handle_logical_operators
-					(command, args, last_exit_status);
+					(args[0], args, last_exit_status);
 			}
 		}
 	}
