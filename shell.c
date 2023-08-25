@@ -35,8 +35,6 @@ int main(int argc, char **argv)
 				handle_alias(args);
 			else
 			{
-				int num_tokens = split_string(command, " ", args);
-				
 				handle_comments(args);
 				handle_variable_replacement(args,
 					last_exit_status);
