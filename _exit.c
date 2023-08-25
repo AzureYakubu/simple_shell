@@ -2,7 +2,7 @@
 #include "shell.h"
 
 /**
- * _exit - exits the shell
+ * handle_exit - exits the shell
  *
  * Return: ...
  */

@@ -1,8 +1,14 @@
 #include <string.h>
 #include "shell.h"
 
-extern alias_t aliases[MAX_ALIAS];
-extern int num_aliases;
+/**
+ * find_alias - ...
+ *
+ * Return: -1
+ */
+
+alias_t aliases[MAX_ALIAS];
+int num_aliases;
 
 int find_alias(char *name)
 {

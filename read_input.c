@@ -9,7 +9,6 @@
  * @lineptr: pointer to the buffer that holds the line
  * @n: size of the buffer
  * @command: pointer to the command string
- * @args: ...
  *
  * Return: number of commands, -1 on error or EOF
  */

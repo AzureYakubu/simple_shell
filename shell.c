@@ -1,42 +1,27 @@
 #include "shell.h"
-
 #define MAX_ARGS 128
 #define MAX_COMMANDS 128
 
 /**
  * main - Entry point
  *
+ * @argc: ...
+ * @argv: ...
  * Return: Always (0)
  */
 
 int main(int argc, char **argv)
 {
-	char *line = NULL;
+	char *line = NULL, *command, *args[MAX_ARGS];
 	size_t len = 0;
 	ssize_t ncmds;
 	char *commands[MAX_COMMANDS];
-	char *command;
-	char *args[MAX_ARGS];
 	int last_exit_status = 0;
-	FILE *fp = stdin;
-	int i;
+	FILE *fp = (argc > 1) ? fopen(argv[1], "r") : stdin;
 
-	if (argc > 1)
+	while ((ncmds = read_input(&line, &len, commands)) != -1)
 	{
-		fp = fopen(argv[1], "r");
-		if (!fp)
-		{
-			perror(argv[1]);
-			exit(1);
-		}
-	}
-
-	while (1)
-	{
-		ncmds = read_input(&line, &len, commands);
-		if (ncmds == -1)
-			break;
-		for (i = 0; i < ncmds; i++)
+		for (int i = 0; i < ncmds; i++)
 		{
 			command = commands[i];
 

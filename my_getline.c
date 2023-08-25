@@ -18,20 +18,19 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	static char buffer[READ_SIZE];
 	static size_t start, end;
 	ssize_t bytes_read;
-	size_t i;
+	size_t i = 0;
 
-	if (lineptr == NULL || n == NULL || stream == NULL)
+	if (!lineptr || !n || !stream)
 		return (-1);
 
-	if (*lineptr == NULL)
+	if (!*lineptr)
 	{
 		*n = READ_SIZE;
 		*lineptr = malloc(*n);
-		if (*lineptr == NULL)
+		if (!*lineptr)
 			return (-1);
 	}
 
-	i = 0;
 	while (1)
 	{
 		if (start >= end)
@@ -48,7 +47,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			{
 				*n += READ_SIZE;
 				*lineptr = realloc(*lineptr, *n);
-				if (*lineptr == NULL)
+				if (!*lineptr)
 					return (-1);
 			}
 			(*lineptr)[i++] = buffer[start++];

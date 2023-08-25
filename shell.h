@@ -10,7 +10,7 @@
 #define MAX_ALIAS 128
 
 char *get_path(void);
-char *get_command(char*line, char *path);
+char *get_command(char *line, char *path);
 void handle_exit(void);
 void print_env(void);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
@@ -21,13 +21,16 @@ int handle_setenv(char **args);
 int handle_unsetenv(char **args);
 int handle_cd(char **args);
 int handle_logical_operators(char *command, char **args, int last_exit_status);
-typedef struct alias{
+typedef struct alias
+{
 	char *name;
 	char *value;
-} alias_t;
+}
+alias_t;
 
-alias_t aliases[MAX_ALIAS];
-int num_aliases;
+extern alias_t aliases[MAX_ALIAS];
+extern int num_aliases;
+extern char **environ;
 
 void handle_alias(char **args);
 int find_alias(char *name);
