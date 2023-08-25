@@ -24,12 +24,12 @@ int handle_logical_operators(char *command, char **args, int last_exit_status)
 		execute = 1;
 	if (execute)
 	{
-		if (!handle_builtin(command, args + (strcmp(args[0], "&&") == 0 || strcmp(args[0], "||") == 0)) &&
-			!handle_setenv(args + (strcmp(args[0], "&&") == 0 || strcmp(args[0], "||") == 0)) &&
-			!handle_unsetenv(args + (strcmp(args[0], "&&") == 0 || strcmp(args[0], "||") == 0)) &&
-			!handle_cd(args + (strcmp(args[0], "&&") == 0 || strcmp(args[0], "||") == 0)))
+		if (!handle_builtin(command, args) &&
+			!handle_setenv(args) &&
+			!handle_unsetenv(args) &&
+			!handle_cd(args))
 		{
-			execute_command(command, args + (strcmp(args[0], "&&" == 0 || strcmp(args[0], "||" = 0));
+			execute_command(command, args);
 			return 0;
 		}
 	}
