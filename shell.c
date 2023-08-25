@@ -29,9 +29,7 @@ int main(int argc, char **argv)
 	{
 		for (i = 0; i < ncmds; i++)
 		{
-			char *command = commands[i];
-
-			if (strcmp(args[0], "alias") == 0)
+			if (strcmp(commands[i], "alias") == 0)
 				handle_alias(args);
 			else
 			{
