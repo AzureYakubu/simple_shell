@@ -10,7 +10,7 @@
 #define MAX_ALIAS 128
 
 char *get_path(void);
-char *get_command(char *line, char *path);
+char *get_command(char *line);
 void handle_exit(void);
 void print_env(void);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
