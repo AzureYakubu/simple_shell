@@ -18,10 +18,11 @@ int main(int argc, char **argv)
 	char *commands[MAX_COMMANDS];
 	int last_exit_status = 0;
 	FILE *fp = (argc > 1) ? fopen(argv[1], "r") : stdin;
-
+	int i;
+	
 	while ((ncmds = read_input(&line, &len, commands)) != -1)
 	{
-		for (int i = 0; i < ncmds; i++)
+		for (i = 0; i < ncmds; i++)
 		{
 			command = commands[i];
 
