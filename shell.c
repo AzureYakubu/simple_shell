@@ -30,7 +30,6 @@ int main(int argc, char **argv)
 				handle_alias(args);
 			else
 			{
-				char *args[MAX_ARGS];
 				int num_tokens = split_string(command, " ", args);
 				
 				handle_comments(args);
