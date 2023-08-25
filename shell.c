@@ -30,6 +30,12 @@ int main(int argc, char **argv)
 				handle_alias(args);
 			else
 			{
+				int num_tokens = split_string(line, delim, args);
+
+				for (int i = 0; i < num_tokens; i++)
+					{
+						printf("Token %d: %s\n", i, args[i]);
+					}
 				split_string(command, " ", args);
 				handle_comments(args);
 				handle_variable_replacement(args,
