@@ -12,7 +12,7 @@
 
 int main(int argc, char **argv)
 {
-	char *line = NULL, *command, *args[MAX_ARGS];
+	char *line = NULL, *args[MAX_ARGS];
 	size_t len = 0;
 	ssize_t ncmds;
 	char *commands[MAX_COMMANDS];
